@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#content">본문 바로가기</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="brand">DevTalk</a>
+            <nav class="nav">
+                {% if user and user.id %}
+                <a href="/profile" class="nav-link">프로필</a>
+                <a href="/auth/logout" class="nav-link">로그아웃</a>
+                {% else %}
+                <a href="/join" class="nav-link">회원가입</a>
+                <a href="/auth/kakao" class="nav-link">카카오로 로그인</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <div class="container" id="content" role="main">
+        <div class="profile-wrap">
+            <div class="profile">
+                {% if user and user.id %}
+                <div class="user-name">{{'안녕하세요! ' + user.nick + '님'}}</div>
+                <div class="half">
+                    <div>팔로잉</div>
+                    <div class="count following-count">{{followingCount}}</div>
+                </div>
+                <div class="half">
+                    <div>팔로워</div>
+                    <div class="count follower-count">{{followerCount}}</div>
+                </div>
+                <input id="my-id" type="hidden" value="{{user.id}}">
+                <a id="my-profile" href="/profile" class="btn btn-secondary">내 프로필</a>
+                <a id="logout" href="/auth/logout" class="btn btn-primary">로그아웃</a>
+                {% else %}
+                <form id="login-form" action="/auth/login" method="post">
+                    <div class="input-group">
+                        <label for="email">이메일</label>
+                        <input id="email" type="email" name="email" required autofocus>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">비밀번호</label>
+                        <input id="password" type="password" name="password" required>
+                    </div>
+                    <a id="join" href="/join" class="btn btn-secondary">회원가입</a>
+                    <button id="login" type="submit" class="btn btn-primary">로그인</button>
+                    <a id="kakao" href="/auth/kakao" class="btn btn-kakao">카카오톡</a>
+                </form>
+                {% endif %}
+            </div>
+            <footer>
+                Made by&nbspthisisubin
+            </footer>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload = () => {
+            if (new URL(location.href).searchParams.get('error')) {
+                alert(new URL(location.href).searchParams.get('error'));
+            }
+        };
+    </script>
+    {% block script %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="timeline">
+    <div class="followings half">
+        <h2>Following</h2>
+        {% if user.Followings %}
+        {% for following in user.Followings %}
+        <div class="pill following-item" data-user-id="{{following.id}}">
+            <span class="nickname">{{following.nick}}</span>
+            <button class="unfollow-btn" data-user-id="{{following.id}}">🅇</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="followers half">
+        <h2>Follower</h2>
+        {% if user.Followers %}
+        {% for follower in user.Followers %}
+        <div class="pill follower-item" data-user-id="{{follower.id}}">
+            <span class="nickname">{{follower.nick}}</span>
+            <button class="remove-follower-btn" data-user-id="{{follower.id}}">🅇</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="contents half">
+        <h2>Posts</h2>
+        {% if user.Posts %}
+        {% for post in user.Posts %}
+        <div class="post-item">
+            <div class="post-content">{{post.content}}</div>
+            {% if post.img %}
+            <div class="post-image">
+                <img src="{{post.img}}" alt="포스트 이미지" class="post-img">
+            </div>
+            {% endif %}
+            <div class="post-date">{{post.createdAt}}</div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="no-posts">아직 작성한 글이 없습니다.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    // 언팔로우 버튼 클릭 이벤트
+    document.querySelectorAll('.unfollow-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const userId = this.getAttribute('data-user-id');
+            if (confirm('팔로잉을 취소하시겠습니까?')) {
+                axios.delete(`/user/${userId}/following`)
+                    .then(() => {
+                        // 성공 시 해당 팔로잉 항목 제거
+                        this.closest('.following-item').remove();
+                    })
+                    .catch((err) => {
+                        console.error('언팔로우 실패:', err);
+                        alert('언팔로우에 실패했습니다.');
+                    });
+            }
+        });
+    });
+
+    // 팔로워 제거 버튼 클릭 이벤트
+    document.querySelectorAll('.remove-follower-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const userId = this.getAttribute('data-user-id');
+            if (confirm('팔로워를 제거하시겠습니까?')) {
+                axios.delete(`/user/${userId}/follower`)
+                    .then(() => {
+                        // 성공 시 해당 팔로워 항목 제거
+                        this.closest('.follower-item').remove();
+                    })
+                    .catch((err) => {
+                        console.error('팔로워 제거 실패:', err);
+                        alert('팔로워 제거에 실패했습니다.');
+                    });
+            }
+        });
+    });
+</script>
+{% endblock %}

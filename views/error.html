@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="timeline">
+  <div class="twit">
+    <h1 style="margin:0 0 8px 0;">{{message}}</h1>
+    <h2 style="margin:0 0 12px 0; color:#94a3b8;">상태 코드: {{error.status}}</h2>
+    <pre
+      style="white-space: pre-wrap; color:#f87171; background: rgba(2,6,23,.6); padding:12px; border-radius:12px; border:1px solid rgba(148,163,184,.15);">{{error.stack}}</pre>
+  </div>
+</div>
+{% endblock %}
