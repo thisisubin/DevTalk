@@ -140,4 +140,69 @@ router.get('/kakao/callback', passport.authenticate('kakao', {
     res.redirect('/');
 });
 
+/**
+ * @swagger
+ * /auth/naver:
+ *   get:
+ *     summary: 네이버 로그인 시작
+ *     tags: [Auth]
+ *     description: 네이버 OAuth 인증 페이지로 리다이렉트
+ *     responses:
+ *       302:
+ *         description: 네이버 인증 페이지로 리다이렉트
+ */
+//GET /auth/naver
+router.get('/naver', passport.authenticate('naver'));
+
+/**
+ * @swagger
+ * /auth/naver/callback:
+ *   get:
+ *     summary: 네이버 로그인 콜백
+ *     tags: [Auth]
+ *     description: 네이버 OAuth 인증 완료 후 처리
+ *     responses:
+ *       302:
+ *         description: 인증 성공 시 메인 페이지로, 실패 시 에러 페이지로 리다이렉트
+ */
+//GET /auth/naver/callback
+router.get('/naver/callback', passport.authenticate('naver', {
+    failureRedirect: '/?error=네이버로그인 실패',
+}), (req, res) => {
+    res.redirect('/');
+});
+
+
+/**
+ * @swagger
+ * /auth/google:
+ *   get:
+ *     summary: 구글 로그인 시작
+ *     tags: [Auth]
+ *     description: 구글 OAuth 인증 페이지로 리다이렉트
+ *     responses:
+ *       302:
+ *         description: 구글 인증 페이지로 리다이렉트
+ */
+//GET /auth/google
+router.get('/google', passport.authenticate('google'));
+
+/**
+ * @swagger
+ * /auth/google/callback:
+ *   get:
+ *     summary: 구글 로그인 콜백
+ *     tags: [Auth]
+ *     description: 구글 OAuth 인증 완료 후 처리
+ *     responses:
+ *       302:
+ *         description: 인증 성공 시 메인 페이지로, 실패 시 에러 페이지로 리다이렉트
+ */
+//GET /auth/google/callback
+router.get('/google/callback', passport.authenticate('google', {
+    failureRedirect: '/?error=구글로그인 실패',
+}), (req, res) => {
+    res.redirect('/');
+});
+
 module.exports = router;

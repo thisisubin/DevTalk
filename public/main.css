@@ -132,9 +132,9 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(180deg, #2563eb, #1d4ed8);
-    border-color: #1e40af;
-    color: #fff;
+    background: linear-gradient(180deg, #475569, #334155);
+    border-color: #1f2937;
+    color: #e5e7eb;
 }
 
 .btn-secondary {
@@ -147,6 +147,18 @@ body {
     background: #fee500;
     color: #111827;
     border-color: #e2c300;
+}
+
+.btn-naver {
+    background: #03C75A;
+    color: white;
+    border-color: #03C75A;
+}
+
+.btn-google {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
 }
 
 /* 입력 요소 */
@@ -539,4 +551,38 @@ footer {
 .unfollow-btn:hover,
 .remove-follower-btn:hover {
     background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* 로그인 폼 버튼 배치 - 1행: 회원가입/로그인, 2행: 카카오/네이버/구글 */
+#login-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    align-items: stretch;
+}
+
+#login-form .input-group {
+    grid-column: 1 / -1;
+}
+
+#login-form .btn {
+    width: 100%;
+}
+
+/* 기존 float 해제 */
+#login-form #join {
+    float: none;
+}
+
+/* 2행: 소셜 로그인 3개 나란히 (3열) */
+#login-form #kakao {
+    grid-column: 1;
+}
+
+#login-form .btn-naver {
+    grid-column: 2;
+}
+
+#login-form .btn-google {
+    grid-column: 3;
 }

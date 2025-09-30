@@ -24,7 +24,6 @@
                 <a href="/auth/logout" class="nav-link">로그아웃</a>
                 {% else %}
                 <a href="/join" class="nav-link">회원가입</a>
-                <a href="/auth/kakao" class="nav-link">카카오로 로그인</a>
                 {% endif %}
             </nav>
         </div>
@@ -35,11 +34,11 @@
                 {% if user and user.id %}
                 <div class="user-name">{{'안녕하세요! ' + user.nick + '님'}}</div>
                 <div class="half">
-                    <div>팔로잉</div>
+                    <div>Following</div>
                     <div class="count following-count">{{followingCount}}</div>
                 </div>
                 <div class="half">
-                    <div>팔로워</div>
+                    <div>Follower</div>
                     <div class="count follower-count">{{followerCount}}</div>
                 </div>
                 <input id="my-id" type="hidden" value="{{user.id}}">
@@ -55,9 +54,10 @@
                         <label for="password">비밀번호</label>
                         <input id="password" type="password" name="password" required>
                     </div>
-                    <a id="join" href="/join" class="btn btn-secondary">회원가입</a>
                     <button id="login" type="submit" class="btn btn-primary">로그인</button>
-                    <a id="kakao" href="/auth/kakao" class="btn btn-kakao">카카오톡</a>
+                    <a id="kakao" href="/auth/kakao" class="btn btn-kakao">KakaoTalk</a>
+                    <a id="naver" href="/auth/naver" class="btn btn-naver">Naver</a>
+                    <a id="google" href="/auth/google" class="btn btn-google">Google</a>
                 </form>
                 {% endif %}
             </div>

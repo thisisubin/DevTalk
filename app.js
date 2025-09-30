@@ -38,12 +38,12 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/img', express.static(path.join(__dirname, 'uploads')))
 app.use(express.json());
-app.use(express.urlencoded({ express: false }));
-app.use(cookieParser(process.env.COOKIE_SECRETE));
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: process.env.COOKIE_SECRETE,
+    secret: process.env.COOKIE_SECRET,
     cookie: {
         httpOnly: true,
         secure: false,
