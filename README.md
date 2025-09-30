@@ -77,32 +77,26 @@ npm start
 ---
 
 #### 📌 API 문서 (Swagger)
-swagger.js 파일을 통해 API 문서화
 
-서버 실행 후 /api-docs 또는 /swagger 엔드포인트로 접속하면 API 명세 확인 가능
+- swagger.js 파일을 통해 API 문서화
+- 서버 실행 후 /api-docs 또는 /swagger 엔드포인트로 접속하면 API 명세 확인 가능
 
 ---
 
-#### 👤 My Role & 책임 영역
-Express 서버 설계 및 RESTful API 구현
+#### 👤 My Role
 
-Sequelize ORM을 활용한 DB 모델링 (User, Post, Comment, Hashtag, Follow 등)
-
-해시태그 파싱 및 태그 연관 게시물 조회 기능 구현
-
-인증/인가 로직 구현 (JWT, Passport.js)
-
-Swagger 기반 API 문서화
-
-프론트엔드 연동을 고려한 API 응답 구조 설계
+- Express 서버 설계 및 RESTful API 구현
+- Sequelize ORM을 활용한 DB 모델링 (User, Post, Comment, Hashtag, Follow 등)
+- 해시태그 파싱 및 태그 연관 게시물 조회 기능 구현
+- 인증/인가 로직 구현 (JWT, Passport.js)
+- Swagger 기반 API 문서화
+- 프론트엔드 연동을 고려한 API 응답 구조 설계
 
 ---
 
 #### ✅ 향후 계획 & 개선 포인트
-좋아요 / 북마크 기능 추가
 
-파일 업로드 (이미지 첨부) 기능
-
-검색 기능 강화 (키워드 검색, 태그 검색)
-
-배포 자동화 / CI-CD 구축
+- 좋아요 / 북마크 기능 추가
+- 파일 업로드 (이미지 첨부) 기능
+- 검색 기능 강화 (키워드 검색, 태그 검색)
+- 배포 자동화 / CI-CD 구축
